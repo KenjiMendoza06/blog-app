@@ -1,22 +1,29 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material";
+import { useSelector } from "react-redux";
+import { themeSettings } from "./theme";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Dashboard from "./scenes/dashboard/index"
+import Layout from "./scenes/layout/index"
 import './App.scss';
-import Home from './pages/Home';
-import About from './pages/About';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import Dashboard from './pages/Dashboard';
+import { useMemo } from "react";
+
 
 export default function App() {
+  const mode = useSelector((state) => state.global.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/signin' element={<SignIn />}></Route>
-          <Route path='/signup' element={<SignUp />}></Route>
-          <Route path='/dashboard' element={<Dashboard />}></Route>
-        </Routes>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+          </Routes>
+        </ThemeProvider>
       </BrowserRouter>
     </div>
   )
