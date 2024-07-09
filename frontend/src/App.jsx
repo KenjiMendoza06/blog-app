@@ -7,6 +7,9 @@ import Dashboard from "./scenes/dashboard/index"
 import Layout from "./scenes/layout/index"
 import './App.scss';
 import { useMemo } from "react";
+import Products from "./scenes/products/index";
+import Customers from "./scenes/customers/index";
+import Transactions from "./scenes/transactions/index";
 
 
 export default function App() {
@@ -21,6 +24,9 @@ export default function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/customers" element={< Customers />} />
+              <Route path="/transactions" element={<Transactions />} />
             </Route>
           </Routes>
         </ThemeProvider>
