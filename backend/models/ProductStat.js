@@ -11,7 +11,7 @@ const productStatSchema = mongoose.Schema(
         {
           month: String,
           totalSales: Number,
-          totalSoldUnits: Number,
+          totalUnits: Number,
         },
       ],
       dailyData: {
