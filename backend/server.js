@@ -16,11 +16,13 @@ import User from "./models/User.js";
 import Product from "./models/Product.js";
 import ProductStat from "./models/ProductStat.js";
 import Transaction from "./models/Transaction.js";
+import OverallStat from "./models/OverallStat.js";
 import {
   dataUser,
   dataProduct,
   dataProductStat,
   dataTransaction,
+  dataOverallStat,
 } from "./data/index.js";
 
 /* start up config - always a standard before doing anything*/
@@ -50,6 +52,7 @@ mongoose
     /* ONLY ADD DATA ONE TIME*/
     // Product.insertMany(dataProduct);
     // ProductStat.insertMany(dataProductStat);
+    // OverallStat.insertMany(dataOverallStat);
     // Transaction.insertMany(dataTransaction);
     // User.insertMany(dataUser);
   })

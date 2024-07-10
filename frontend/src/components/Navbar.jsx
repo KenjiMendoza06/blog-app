@@ -119,7 +119,7 @@ export default function Navbar({ isSidebarOpen, setIsSidebarOpen, user }) {
             </Button>
             <Menu
               anchorEl={anchorEl}
-              isOpen={isOpen}
+              open={isOpen}
               handleClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >

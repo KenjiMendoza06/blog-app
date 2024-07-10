@@ -10,7 +10,12 @@ import { useMemo } from "react";
 import Products from "./scenes/products/index";
 import Customers from "./scenes/customers/index";
 import Transactions from "./scenes/transactions/index";
-
+import Geography from "./scenes/geography/index";
+import Overview from "./scenes/overview";
+import Daily from "./scenes/daily/index";
+import Monthly from "./scenes/monthly/index";
+import Breakdown from "./scenes/breakdown/index";
+import Admin from "./scenes/admin";
 
 export default function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -27,6 +32,12 @@ export default function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/customers" element={< Customers />} />
               <Route path="/transactions" element={<Transactions />} />
+              <Route path="/geography" element={<Geography />} />
+              <Route path="/overview" element={<Overview />} />
+              <Route path="/daily" element={<Daily />} />
+              <Route path="/monthly" element={<Monthly />} />
+              <Route path="/breakdown" element={<Breakdown />} />
+              <Route path="/admin" element={<Admin />} />
             </Route>
           </Routes>
         </ThemeProvider>
