@@ -17,6 +17,9 @@ import Monthly from "./scenes/monthly/index";
 import Breakdown from "./scenes/breakdown/index";
 import Admin from "./scenes/admin/index";
 import Performance from "./scenes/performance/index";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -27,9 +30,13 @@ export default function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
             <Route element={<Layout />}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Navigate to="/sign-in" replace />} />
+              <Route element={<PrivateRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
               <Route path="/products" element={<Products />} />
               <Route path="/customers" element={< Customers />} />
               <Route path="/transactions" element={<Transactions />} />
