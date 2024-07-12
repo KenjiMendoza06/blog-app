@@ -15,9 +15,14 @@ export const getProducts = asyncHandler(async (req, res) => {
 
     const productsWithStats = await Promise.all(
       products.map(async (product) => {
-        const stat = await ProductStat.find({
+        const stats = await ProductStat.findOne({
           productId: product._id,
         });
+        // Extract the necessary fields from stats or provide default values if stats is null
+        const stat = {
+          yearlySalesTotal: stats ? stats.yearlySalesTotal : 0,
+          yearlyTotalSoldUnits: stats ? stats.yearlyTotalSoldUnits : 0,
+        };
         return {
           ...product._doc,
           stat, // Add stat to the product object

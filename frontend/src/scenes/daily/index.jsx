@@ -1,10 +1,10 @@
-import { Box, useTheme } from "@mui/material"
-import Header from "../../components/Header"
-import { useState, useMemo } from "react"
-import { useGetSalesQuery } from "../../state/api"
-import "react-datepicker/dist/react-datepicker.css"
-import DatePicker from "react-datepicker"
-import { ResponsiveLine } from "@nivo/line"
+import { Box, useTheme } from "@mui/material";
+import Header from "../../components/Header";
+import { useState, useMemo } from "react";
+import { useGetSalesQuery } from "../../state/api";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import { ResponsiveLine } from "@nivo/line";
 
 export default function Daily() {
     const [startDate, setStartDate] = useState(new Date("2021-02-01"));
@@ -32,14 +32,19 @@ export default function Daily() {
             if (dateFormatted >= startDate && dateFormatted <= endDate) {
                 const splitDate = date.substring(date.indexOf("-") + 1);
 
-                totalSalesLine.data = [
-                    ...totalSalesLine.data,
-                    { x: splitDate, y: totalSales },
-                ];
-                totalUnitsLine.data = [
-                    ...totalUnitsLine.data,
-                    { x: splitDate, y: totalUnits },
-                ];
+                // Check for NaN values
+                if (!isNaN(totalSales) && !isNaN(totalUnits)) {
+                    totalSalesLine.data = [
+                        ...totalSalesLine.data,
+                        { x: splitDate, y: totalSales },
+                    ];
+                    totalUnitsLine.data = [
+                        ...totalUnitsLine.data,
+                        { x: splitDate, y: totalUnits },
+                    ];
+                } else {
+                    console.warn(`NaN value detected: date=${date}, totalSales=${totalSales}, totalUnits=${totalUnits}`);
+                }
             }
         });
 

@@ -17,7 +17,7 @@ const OverallStatSchema = mongoose.Schema(
       {
         date: String,
         totalSales: Number,
-        totalSoldUnits: Number,
+        totalUnits: Number,
       },
     ],
     salesByCategory: {
